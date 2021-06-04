@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books & Authors</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+</head>
+<body>
+    <div class="contain">
+        <h1> {{author.first_name}} {{author.last_name}} </h1>
+        <h3> ID:{{author.id}} </h3>
+        <div class="mid">
+            <h3>Notes:</h3>
+            <p> {{author.notes}}</p>
+        </div>
+        <ul>
+            <h3>Books:</h3>
+            {% for book in author.books.all %}
+            <li>{{book}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

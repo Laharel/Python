@@ -1,0 +1,49 @@
+.header{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+}
+
+form input{
+    width: 150px;
+    margin: 10px;
+}
+
+form span{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+}
+
+form select{
+    width: 160px;
+}
+
+.select-span{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 240px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    padding-right: 10px;
+}
+
+.button-span{
+    width: 90px;
+}
+
+.bottom{
+    padding: 10px 40% 10px 40%;
+}
+

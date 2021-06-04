@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Read (One)</title>
+</head>
+<body class="show-details-body">
+    <!-- show number in h1 -->
+    <span class="header">
+        <h1>Add a New Show</h1>
+        <a href="/shows">Go Back</a>
+    </span>
+    <span>
+        <label for="det-title">Title:</label>
+        <p id="det-title">{{ show.title }}</p>
+    </span>
+    <span>
+        <label for="det-network">Network:</label>
+        <p id="det-network">{{ show.network }}</p>
+    </span>
+    <span>
+        <label for="det-rel-date">Release Date:</label>
+        <p id="det-rel-date">{{ show.release_date }}</p>
+    </span>
+    <span>
+        <label for="det-desc">Description:</label>
+        <p id="det-desc">{{ show.description }}</p>
+    </span>
+    <span class="det-bottom-span">
+        <label for="det-updated-at">Last Updated:</label>
+        <p id="det-updated-at">{{ show.updated_at }}</p>
+    </span>
+    <span class="det-footer">
+        <a href="{% url 'show-edit' id=show.id %}">Edit</a>
+        |<br>
+        <a href="{% url 'show-destroy' id=show.id %}">Delete</a>
+    </span>
+</body>
+</html>

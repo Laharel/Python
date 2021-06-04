@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Game!</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .wrong{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            height: 200px;
+            width: 300px;
+            background-color: red;
+        }
+        .correct{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            height: 200px;
+            width: 300px;
+            background-color: green;
+        }
+        .lose h1{
+            color: aqua;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Great Number Game!</h1>
+    <h3>I am thinking of a number between 1 and 100</h3>
+    <h3>Take a guess!</h3>
+    <form action="/guess" method="POST">
+        {% csrf_token %}
+        {% if request.session.guess == undefined %}
+            <input type="text" name="guess">
+            <button type="submit">Submit</button>
+        {% endif %}
+        {% if request.session.counter > 0 %}
+                <h1> {{ request.session.counter }} </h1>
+        {% endif %}
+        {% if  5 > request.session.counter %}
+            {% if request.session.guess > request.session.number %}
+                <div class="wrong">
+                    <h1>Too High!</h1>
+                    <input type="text" name="guess">
+                    <button type="submit">Submit</button>
+                </div>
+            {% endif %}
+            {% if request.session.number > request.session.guess %}
+                <div class="wrong">
+                    <h1>Too Low!</h1>
+                    <input type="text" name="guess">
+                    <button type="submit">Submit</button>
+                </div>
+            {% endif %}
+        {% endif %}
+        {% if request.session.guess == request.session.number and  5 >= request.session.counter %}
+        <div class="correct">
+            <h1> {{ request.session.number }} was the number! </h1>
+            <a href="/clear"><button type="button">Play again!</button></a>
+        </div>
+        {% endif %}
+        {% if request.session.counter == 5 and request.session.guess != request.session.number %}
+            <div class="lose wrong">
+                <h1> You lose! </h1>
+                <a href="/clear"><button type="button">Play again!</button></a>
+            </div>
+        {% endif %}
+    </form>
+</body>
+</html>

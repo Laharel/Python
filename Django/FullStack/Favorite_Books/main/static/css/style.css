@@ -1,0 +1,17 @@
+.top{
+    display: flex;
+    justify-content: space-between;
+}
+.container{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+.wrapper{
+    display: flex;
+    justify-content: space-around;
+}

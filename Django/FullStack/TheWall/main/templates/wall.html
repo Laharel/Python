@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wall Assignment</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0 5px;
+        }
+        .top{
+            padding-left: 5px;
+            border: 5px solid black;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .right{
+            padding: 0 10px;
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <h3>CodingDojo Wall</h3>
+        <div class="right">
+            <h5>Welcome {{this.fn}}!</h5>
+            <h5><a href="/logout">log off</a></h5>
+        </div>
+    </div>
+    <div class="message">
+        <h4>Post a message</h4>
+        <form action="/message" method="post">
+            {% csrf_token %}
+            <textarea name="msg" cols="40" rows="3"></textarea>
+            <button type="submit">Post a message</button>
+        </form>
+    </div>
+    {% if messages %}
+        {% for message in messages.all reversed %}
+        <p>{{ message.message}} - {{message.date}}</p>
+            {% if comments %}
+                {% for comment in message.comments.all %}
+                    <p>{{comment.comment}}</p>
+                        {% if comment in mycomments %}
+                            <div class="delete">
+                                <form action="/delete/{{comment.id}}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Delete</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                {% endfor %}
+            {% endif %}
+        <div class="comment">
+            <p>Post a comment</p>
+            <form action="/comment/{{message.id}}" method="post">
+            {% csrf_token %}
+            <textarea name="cmt" cols="40" rows="3"></textarea>
+            <button type="submit">Post a comment</button>
+            </form>
+        </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        table{
+            width: fit-content;
+            border: 5px solid black;
+        }
+        .top{
+            padding: 5px;
+            border-bottom: 3px solid black;
+        }
+        .bottom{
+            width: 500px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <h1>All users</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th> 
+                <th>Email</th>
+                <th>Age</th>
+            </tr>
+            {% for user in all_the_users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{user.first_name}} {{user.last_name}}</td>
+                    <td>{{user.Email}}</td>
+                    <td>{{user.Age}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <h1>Add a User</h1>
+    <form action="/create_user" method="post">
+        {% csrf_token %}
+        <div class="bottom">
+            First Name<input type="text" name="first_name">
+            Last Name<input type="text" name="last_name">
+        </div>
+        <div class="bottom">
+            Email<input type="email" name="email">
+            Age<input type="number" name="age">
+        </div>
+            <button type="submit">Add</button>
+    </form>
+</body>
+</html>

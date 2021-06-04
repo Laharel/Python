@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .button{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        form{
+            padding: 5px;
+            border: 5px solid black;
+        }
+        .box {
+            height: 200px;
+            overflow: scroll;
+        }
+        p{
+            {% if earned > 0 %}
+            color:green;
+            {% else %}
+            color:red;
+            {% endif %}
+        }
+    </style>
+</head>
+<body>
+    <div class="amount">
+        <h3>Your gold : {{request.session.curr_gold}} <a href="/clear">Reset</a></h3>
+    </div>
+    <div class="button">
+        <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <h1>Farm</h1>
+            <h3>(earns 10-20 golds)</h3>
+            <input type="hidden" name="gold" value="farm">
+            <button type="submit">Find Gold!</button>
+        </form>
+        <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <h1>Cave</h1>
+            <h3>(earns 5-10 golds)</h3>
+            <input type="hidden" name="gold" value="cave">
+            <button type="submit">Find Gold!</button>
+        </form>
+        <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <h1>House</h1>
+            <h3>(earns 2-5 golds)</h3>
+            <input type="hidden" name="gold" value="house">
+            <button type="submit">Find Gold!</button>
+        </form>
+        <form action="/process_money" method="POST">
+            {% csrf_token %}
+            <h1>Casino</h1>
+            <h3>(earns/takes 0-50 golds)</h3>
+            <input type="hidden" name="gold" value="casino">
+            <button type="submit">Find Gold!</button>
+        </form>
+    </div>
+    <div>
+        <h3>Activities :</h3>
+        <div class="box">
+            {% for i in request.session.log %}
+            <p> {{i}} </p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

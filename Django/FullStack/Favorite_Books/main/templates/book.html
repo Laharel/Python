@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Favorite Books</title>
+</head>
+<body>
+    <div class="top">
+        <h1>Welcome {{ this.first_name }}!</h1>
+        <div class="right">
+            <a href="/logout"><button>Logout</button></a>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="left">
+            <h1>{{book.title}}</h1>
+            <h3>Added by: {{book.uploaded_by.first_name}}</h3>
+            <h3>Added on: {{book.created_at}}</h3>
+            <h3>Last updated on :{{book.updated_at}}</h3>
+            <h3>Description:{{book.desc}}</h3>
+        </div>
+        <div class="right">
+            <h1>Users Who Like This Book:</h1>
+            <h3>
+                <ul>
+                    {% if book %}
+                        {% for user in book.users_who_like.all %}
+                            {% if this.id == user.id and book in this.liked_books.all %}
+                                <li>{{user.first_name}}  {{user.last_name}}</li>
+                                <h3><a href="/books/{{book.id}}/remove">Un-Favorite</a></h3>
+                            {% elif this not in book.users_who_like.all  %}
+                                <li>{{user.first_name}}  {{user.last_name}}</li>
+                                <h3><a href="/books/{{book.id}}/like">Add to Favorites</a></h3>
+                            {% else %}
+                                <li>{{user.first_name}}  {{user.last_name}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </h3>
+        </div>
+    </div>
+</body>
+</html>

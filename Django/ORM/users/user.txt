@@ -1,0 +1,23 @@
+>>> from users_app.models import *
+>>> a=User.objects.create(first_name = "M",last_name = "S",email = "ms@ms.com",age = "30")
+>>> b=User.objects.create(first_name = "F",last_name = "S",email = "FS@fs.com",age = "24") 
+>>> c=User.objects.create(first_name = "J",last_name = "S",email = "js@js.com",age = "2")  
+>>> all_users=User.objects.all()
+>>> print(all_users)
+<QuerySet [<User: User object (1)>, <User: User object (2)>, <User: User object (3)>]>
+>>> last=User.objects.last()
+>>> print(last)
+User object (3)
+>>> first=User.objects.first()
+>>> print(first) 
+User object (1)
+>>> c.last_name="Pancakes"
+>>> c.save()
+>>> b.delete
+<bound method Model.delete of <User: User object (2)>>
+>>> b.delete()
+(1, {'users_app.User': 1})
+>>> User.objects.all().order_by("first_name")
+<QuerySet [<User: User object (3)>, <User: User object (1)>]>
+>>> User.objects.all().order_by("-first_name")
+<QuerySet [<User: User object (1)>, <User: User object (3)>]>

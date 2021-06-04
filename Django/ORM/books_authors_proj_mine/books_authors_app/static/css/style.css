@@ -1,0 +1,33 @@
+body{
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+    table-layout: fixed;
+    width: fit-content;
+} 
+
+th,td {
+    border: 1px solid black;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.contain{
+    display: flex;
+    flex-direction: column;
+}
+.mid{
+    display: flex;
+}

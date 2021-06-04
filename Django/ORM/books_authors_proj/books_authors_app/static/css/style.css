@@ -1,0 +1,58 @@
+.main-body{
+    display: flex;
+    justify-content: space-around;
+}
+
+table, td, th{
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+
+.add-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.add-form span{
+    margin: 10px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-form button{
+    width: 50px;
+
+}
+
+.button-span{
+    padding-left: 27%;
+    padding-right: 40%;
+    width: 100%;
+}
+
+.book-body{
+    margin: 10px 20px;
+}
+.book-span{
+    display: flex;
+    align-items: center;
+}
+
+.det-id{
+    font-weight: bold;
+    margin-left: 5px;
+
+}
+
+.det-desc{
+    font-weight: bold;
+    margin-left: 5px;
+
+}
+
+.authors-span{
+    display: flex;
+    flex-direction: column;
+
+}
